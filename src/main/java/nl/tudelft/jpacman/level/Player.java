@@ -19,6 +19,8 @@ public class Player extends Unit {
      */
     private int score;
 
+    private int nbLives;
+
     /**
      * The animations for every direction.
      */
@@ -49,7 +51,8 @@ public class Player extends Unit {
      */
     protected Player(Map<Direction, Sprite> spriteMap, AnimatedSprite deathAnimation) {
         this.score = 0;
-        this.alive = true;
+        this.nbLives=3;
+        this.alive=true;
         this.sprites = spriteMap;
         this.deathSprite = deathAnimation;
         deathSprite.setAnimating(false);
@@ -72,7 +75,7 @@ public class Player extends Unit {
      * @param isAlive
      *            <code>true</code> iff this player is alive.
      */
-    public void setAlive(boolean isAlive) {
+    private void setAlive(boolean isAlive) {
         if (isAlive) {
             deathSprite.setAnimating(false);
             this.killer = null;
@@ -82,6 +85,23 @@ public class Player extends Unit {
         }
         this.alive = isAlive;
     }
+
+
+
+    public void removeLife(){
+        if(this.nbLives>0) {
+            this.nbLives--;
+            if(this.nbLives==0){
+                this.setAlive(false);
+            }
+        }
+    }
+
+    public int getNbLives(){
+        return this.nbLives;
+    }
+
+
 
     /**
      * Returns the unit that caused the death of Pac-Man.

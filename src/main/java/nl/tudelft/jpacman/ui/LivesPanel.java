@@ -1,22 +1,14 @@
 package nl.tudelft.jpacman.ui;
 
-import java.awt.GridLayout;
+import nl.tudelft.jpacman.level.Player;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JLabel;
-
-import nl.tudelft.jpacman.level.Player;
-
-/**
- * A panel consisting of a column for each player, with the numbered players on
- * top and their respective scores underneath.
- *
- * @author Jeroen Roosen 
- *
- */
-public class ScorePanel extends Panel {
+public class LivesPanel extends Panel {
 
     /**
      * Default serialisation ID.
@@ -31,13 +23,13 @@ public class ScorePanel extends Panel {
     /**
      * The default way in which the score is shown.
      */
-    public static final PanelFormatter DEFAULT_SCORE_FORMATTER =
-        (Player player) -> String.format("Score: %3d", player.getScore());
+    public static final Panel.PanelFormatter DEFAULT_SCORE_FORMATTER =
+        (Player player) -> String.format("Lives: %3d", player.getNbLives());
 
     /**
      * The way to format the score information.
      */
-    private PanelFormatter scoreFormatter = DEFAULT_SCORE_FORMATTER;
+    private Panel.PanelFormatter scoreFormatter = DEFAULT_SCORE_FORMATTER;
 
     /**
      * Creates a new score panel with a column for each player.
@@ -45,11 +37,11 @@ public class ScorePanel extends Panel {
      * @param players
      *            The players to display the scores of.
      */
-    public ScorePanel(List<Player> players) {
+    public LivesPanel(List<Player> players) {
         super(players);
         labels = new LinkedHashMap<>();
         for (Player player : players) {
-            JLabel label = new JLabel("0", JLabel.CENTER);
+            JLabel label = new JLabel(String.valueOf(player.getNbLives()), JLabel.CENTER);
             labels.put(player, label);
             add(label);
         }
@@ -60,14 +52,11 @@ public class ScorePanel extends Panel {
      * Refreshes the scores of the players.
      */
     protected void refresh() {
-        for (Map.Entry<Player, JLabel> entry : this.labels.entrySet()) {
+        for (Map.Entry<Player, JLabel> entry : labels.entrySet()) {
             Player player = entry.getKey();
-            String score = "";
-            if (!player.isAlive()) {
-                score = "You died. ";
-            }
-            score += scoreFormatter.format(player);
-            entry.getValue().setText(score);
+            String lives= "";
+            lives += scoreFormatter.format(player);
+            entry.getValue().setText(lives);
         }
     }
 
@@ -88,8 +77,9 @@ public class ScorePanel extends Panel {
      * Let the score panel use a dedicated score formatter.
      * @param scoreFormatter Score formatter to be used.
      */
-    public void setPanelFormatter(PanelFormatter scoreFormatter) {
+    public void setPanelFormatter(Panel.PanelFormatter scoreFormatter) {
         assert scoreFormatter != null;
         this.scoreFormatter = scoreFormatter;
     }
 }
+
