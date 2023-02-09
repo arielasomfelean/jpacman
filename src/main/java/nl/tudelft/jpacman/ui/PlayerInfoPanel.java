@@ -54,6 +54,9 @@ public class PlayerInfoPanel extends JPanel {
             ArrayList<JLabel> labels = entry.getValue();
             String score = "";
             String lives= "";
+            if (!player.isAlive()) {
+                score = "You died. ";
+            }
             score += scoreFormatter.format(player);
             lives += livesFormatter.format(player);
             labels.get(0).setText(score);
