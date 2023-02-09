@@ -7,27 +7,25 @@ import javax.swing.*;
 import java.awt.GridLayout;
 import java.util.*;
 
-public class Panel extends JPanel {
+public class PlayerInfoPanel extends JPanel {
 
 
     protected  Map<Player, ArrayList<JLabel>> labels;
     //protected  Map<Player, JLabel> labels;
 
-    public static final Panel.PanelFormatter DEFAULT_SCORE_FORMATTER =
+    public static final PlayerInfoPanel.PanelFormatter DEFAULT_SCORE_FORMATTER =
         (Player player) -> String.format("Score: %3d", player.getScore());
 
-
-
-    public static final Panel.PanelFormatter DEFAULT_LIVES_FORMATTER =
+    public static final PlayerInfoPanel.PanelFormatter DEFAULT_LIVES_FORMATTER =
         (Player player) -> String.format("Lives: %3d", player.getNbLives());
 
     /**
      * The way to format the score information.
      */
-    private Panel.PanelFormatter scoreFormatter = DEFAULT_SCORE_FORMATTER;
-    private Panel.PanelFormatter livesFormatter = DEFAULT_LIVES_FORMATTER;
+    private PlayerInfoPanel.PanelFormatter scoreFormatter = DEFAULT_SCORE_FORMATTER;
+    private PlayerInfoPanel.PanelFormatter livesFormatter = DEFAULT_LIVES_FORMATTER;
 
-    public Panel(List<Player> players) {
+    public PlayerInfoPanel(List<Player> players) {
         super();
         assert players != null;
 
@@ -48,35 +46,6 @@ public class Panel extends JPanel {
             add(lifeLabel);
         }
     }
-//    public ScorePanel(List<Player> players) {
-//        super();
-//        assert players != null;
-//
-//        setLayout(new GridLayout(2, players.size()));
-//
-//        for (int i = 1; i <= players.size(); i++) {
-//            add(new JLabel("Player " + i, JLabel.CENTER));
-//        }
-//        scoreLabels = new LinkedHashMap<>();
-//        for (Player player : players) {
-//            JLabel scoreLabel = new JLabel("0", JLabel.CENTER);
-//            scoreLabels.put(player, scoreLabel);
-//            add(scoreLabel);
-//        }
-//    }
-
-
-//    protected void refresh() {
-//        for (Map.Entry<Player, JLabel> entry : scoreLabels.entrySet()) {
-//            Player player = entry.getKey();
-//            String score = "";
-//            if (!player.isAlive()) {
-//                score = "You died. ";
-//            }
-//            score += scoreFormatter.format(player);
-//            entry.getValue().setText(score);
-//        }
-//    }
 
 
     public void refresh() {

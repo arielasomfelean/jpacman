@@ -12,7 +12,7 @@ import nl.tudelft.jpacman.board.Unit;
 import nl.tudelft.jpacman.game.Game;
 
 /**
- * Panel displaying a game.
+ * PlayerInfoPanel displaying a game.
  *
  * @author Jeroen Roosen 
  *

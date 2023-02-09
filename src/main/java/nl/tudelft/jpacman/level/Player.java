@@ -21,7 +21,6 @@ public class Player extends Unit {
 
     private int nbLives;
 
-    private boolean lostLife;
 
     /**
      * The animations for every direction.
@@ -88,16 +87,12 @@ public class Player extends Unit {
         this.alive = isAlive;
     }
 
-    public boolean lostLife(){
-        return lostLife;
-    }
 
     public void removeLife(){
         if(this.nbLives>0) {
             this.nbLives--;
             if(this.nbLives==0){
                 this.setAlive(false);
-                this.lostLife=true;
             }
         }
     }

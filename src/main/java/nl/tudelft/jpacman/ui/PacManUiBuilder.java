@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import nl.tudelft.jpacman.game.Game;
-import nl.tudelft.jpacman.ui.Panel.PanelFormatter;
+import nl.tudelft.jpacman.ui.PlayerInfoPanel.PanelFormatter;
 
 /**
  * Builder for the JPac-Man UI.
