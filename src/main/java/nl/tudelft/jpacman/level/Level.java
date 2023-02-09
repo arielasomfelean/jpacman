@@ -188,7 +188,11 @@ public class Level {
                 unit.occupy(destination);
                 for (Unit occupant : occupants) {
                     collisions.collide(unit, occupant);
+//                    if(isDidAnyPlayerDie()){
+//                        startSquares = startPositions;
+//                    }
                 }
+
             }
             updateObservers();
         }
@@ -290,6 +294,17 @@ public class Level {
         }
         return false;
     }
+
+    public boolean isDidAnyPlayerDie(){
+        for (Player player : players) {
+            if (player.lostLife()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     /**
      * Counts the pellets remaining on the board.

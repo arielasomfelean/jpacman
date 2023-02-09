@@ -44,8 +44,8 @@ public class PacManUI extends JFrame {
     /**
      * The panel displaying the player scores.
      */
-    private final ScorePanel scorePanel;
-    private final LivesPanel livesPanel;
+    private final Panel panel;
+
 
     /**
      * The panel displaying the game.
@@ -83,23 +83,19 @@ public class PacManUI extends JFrame {
 
 
 
-        scorePanel = new ScorePanel(game.getPlayers());
+        panel = new Panel(game.getPlayers());
         if (scoreFormatter != null) {
-            scorePanel.setPanelFormatter(scoreFormatter);
+            panel.setPanelFormatter(scoreFormatter,livesFormatter);
         }
 
-        livesPanel = new LivesPanel(game.getPlayers());
-        if (livesFormatter != null) {
-            livesPanel.setPanelFormatter(livesFormatter);
-        }
+
 
         boardPanel = new BoardPanel(game);
 
         Container contentPanel = getContentPane();
         contentPanel.setLayout(new BorderLayout());
         contentPanel.add(buttonPanel, BorderLayout.SOUTH);
-        contentPanel.add(scorePanel, BorderLayout.NORTH);
-        contentPanel.add(livesPanel, BorderLayout.EAST);
+        contentPanel.add(panel, BorderLayout.NORTH);
         contentPanel.add(boardPanel, BorderLayout.CENTER);
 
         pack();
@@ -120,7 +116,6 @@ public class PacManUI extends JFrame {
      */
     private void nextFrame() {
         boardPanel.repaint();
-        scorePanel.refresh();
-        livesPanel.refresh();
+        panel.refresh();
     }
 }
